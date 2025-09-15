@@ -1,0 +1,12 @@
+# Dependencies
+/node_modules
+
+# Environment variables
+.env
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+
+# Nodemon log files
+nodemon-debug.log

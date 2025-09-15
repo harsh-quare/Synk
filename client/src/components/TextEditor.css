@@ -1,0 +1,63 @@
+/* Background for the main editor area */
+main {
+  background-color: #0f172a; /* slate-900 */
+}
+
+/* Quill toolbar - stick to top of editor area */
+main .ql-toolbar.ql-snow {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background-color: #1e293b; /* slate-800 */
+  border: none !important;
+  border-bottom: 1px solid #334155 !important;
+
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+/* Align content (A4 page) to center */
+main .ql-container.ql-snow {
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+/* A4-styled editor area */
+main .ql-editor {
+  width: 21cm;
+  min-height: 29.7cm;
+  padding: 2.54cm;
+
+  margin: 1rem 0;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+  color: #1a202c;
+}
+
+/* --- Dark mode toolbar icons --- */
+.ql-snow .ql-stroke {
+  stroke: #d1d5db;
+}
+.ql-snow .ql-fill {
+  fill: #d1d5db;
+}
+.ql-snow .ql-picker-label {
+  color: #d1d5db;
+}
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button:focus .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke {
+  stroke: #818cf8;
+}
+.ql-snow.ql-toolbar .ql-picker-label:hover {
+  color: #818cf8;
+}
+.ql-snow .ql-picker-options {
+  background-color: #334155;
+  border-color: #475569 !important;
+  color: #d1d5db;
+}

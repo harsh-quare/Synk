@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+body {
+    background-color: #0F172A; /* A dark gray-blue */
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* For Webkit-based browsers like Chrome, Safari */
+input[type="password"]::-webkit-reveal,
+input[type="password"]::-webkit-clear-button {
+    display: none !important;
+}
+
+
+/* --- QUILL DARK THEME OVERRIDE --- */
+.ql-snow .ql-toolbar {
+    @apply bg-slate-800 border-none rounded-t-md;
+}
+
+.ql-snow .ql-stroke { @apply stroke-gray-300; }
+.ql-snow .ql-fill { @apply fill-gray-300; }
+.ql-snow .ql-picker-label { @apply text-gray-300; }
+
+.ql-snow .ql-toolbar button {
+    @apply rounded-md transition-colors duration-150 p-1;
+}
+
+
+.ql-snow .ql-toolbar button,
+.ql-snow .ql-toolbar .ql-picker {
+    @apply text-gray-300;
+}
+
+.ql-snow .ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:focus,
+.ql-snow .ql-toolbar button.ql-active {
+    @apply text-white bg-slate-700;
+}
+.ql-snow .ql-toolbar .ql-stroke {
+    stroke: #d1d5db; /* gray-300 */
+}
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button:focus .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke {
+    stroke: #ffffff;
+}
+.ql-snow .ql-toolbar .ql-fill {
+    fill: #d1d5db; /* gray-300 */
+}
+.ql-snow .ql-toolbar button:hover .ql-fill,
+.ql-snow .ql-toolbar button:focus .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill {
+    fill: #ffffff; /* white */
+}
+.ql-snow .ql-picker-label {
+    @apply text-gray-300;
+}
+.ql-snow.ql-toolbar .ql-picker-label:hover {
+     @apply text-white;
+}
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected {
+    @apply text-indigo-400;
+}
+.ql-container.ql-snow { 
+    @apply border-none;
+}
+.ql-editor.ql-blank::before {
+    @apply text-gray-500 not-italic;
+}
+
+
+.ql-editor:focus {
+  outline: none;
+}
+
+/* --- A4 Page Styling --- */
+.a4-page {
+    background-color: white;
+    color: #1a202c; /* Black text on the white page */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2.54cm;
+    margin: 2rem auto;
+}
+
