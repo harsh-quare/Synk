@@ -7,17 +7,21 @@ const http = require("http");
 const { Server } = require("socket.io");
 const Document = require('./models/Document');
 require("dotenv").config();
+const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
 
-// Configure Socket.IO with CORS for frontend connection
+// Unified CORS Configuration
+const corsOptions = {
+    // the allowed client URL
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST"],
+    credentials: true  // crucial for allowing cookies to be sent from the frontend.
+};
+
 const io = new Server(server, {
-    cors: {
-        origin: ["http://localhost:5173", process.env.CLIENT_URL],
-        methods: ["GET", "POST"],
-        credentials: true // for allowing cookies from the frontend
-    },
+    cors: corsOptions, // Use the same options for Socket.IO
     pingInterval: 25000,
     pingTimeout: 20000,
 });
@@ -32,6 +36,7 @@ process.on('uncaughtException', (err) => {
 
 // Connect to database and start server
 dbConnect().then(() => {
+    app.use(cors(corsOptions));
     app.use(express.json());
     app.use(cookieParser());
 
