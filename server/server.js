@@ -34,6 +34,11 @@ process.on('uncaughtException', (err) => {
 dbConnect().then(() => {
     app.use(express.json());
     app.use(cookieParser());
+
+    app.get("/", (req, res) => {
+        res.status(200).send("Synk Server is running and healthy!");
+    });
+
     app.use("/api/auth", authRoutes);
     app.use("/api/documents", documentRoutes);
 
