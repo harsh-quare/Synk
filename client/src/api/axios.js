@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-// Create a configured axios instance for API requests
+// *** DEPLOYMENT FIX
 const axiosInstance = axios.create({
-    baseURL: '/api', // Requests are proxied to backend by Vite during development
-    withCredentials: true, // Automatically send cookies (for authentication)
+    // We set the base URL for all API requests.
+    // In production, this will be your live Render URL.
+    // In development, this will be an empty string, and the Vite proxy will handle it.
+    baseURL: import.meta.env.VITE_SERVER_URL || 'http://localhost:3001',
+    withCredentials: true,  // automatically send cookies (for authentication)
 });
 
 export default axiosInstance;
+
