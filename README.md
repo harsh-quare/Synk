@@ -117,7 +117,6 @@ Please fork the repo and create a pull request for any enhancements.
 
 📜 License
 This project is licensed under the **MIT License**.  
-See the [LICENSE](./LICENSE) file for details.
 
 
 🙌 Acknowledgments
