@@ -12,12 +12,23 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 
-// Unified CORS Configuration
+// We create a list of allowed origins.
+const allowedOrigins = [
+  process.env.CLIENT_URL, // Your live Vercel URL
+  'http://localhost:5173'  // Your local development URL
+];
+
 const corsOptions = {
-    // the allowed client URL
-    origin: process.env.CLIENT_URL,
+    // The origin function checks if the incoming request's origin is in our allowed list.
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST"],
-    credentials: true  // crucial for allowing cookies to be sent from the frontend.
+    credentials: true 
 };
 
 const io = new Server(server, {
