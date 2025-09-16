@@ -14,8 +14,9 @@ const server = http.createServer(app);
 // Configure Socket.IO with CORS for frontend connection
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
-        methods: ["GET", "POST"]
+        origin: ["http://localhost:5173", process.env.CLIENT_URL],
+        methods: ["GET", "POST"],
+        credentials: true // for allowing cookies from the frontend
     },
     pingInterval: 25000,
     pingTimeout: 20000,
@@ -43,7 +44,7 @@ dbConnect().then(() => {
             let documentData;
 
             // Use cached document if available
-            if (documentStates.has(documentId)) {
+            if (documentStates.has(documentId)) {l
                 documentData = documentStates.get(documentId);
             } else {
                 // Otherwise, fetch from database
