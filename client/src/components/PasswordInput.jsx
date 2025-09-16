@@ -3,7 +3,7 @@ import { useState } from "react";
 const EyeIcon = ({ closed }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="h-5 w-5 text-gray-400 hover:text-gray-600"
+    className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
