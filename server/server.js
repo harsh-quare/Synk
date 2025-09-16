@@ -44,7 +44,7 @@ dbConnect().then(() => {
             let documentData;
 
             // Use cached document if available
-            if (documentStates.has(documentId)) {l
+            if (documentStates.has(documentId)) {
                 documentData = documentStates.get(documentId);
             } else {
                 // Otherwise, fetch from database
