@@ -14,8 +14,9 @@ const server = http.createServer(app);
 
 // We create a list of allowed origins.
 const allowedOrigins = [
-  process.env.CLIENT_URL, // Your live Vercel URL
-  'http://localhost:5173'  // Your local development URL
+  'process.env.CLIENT_URL', // Your live Vercel URL
+  'http://localhost:5173',  // Your local development URL'
+  '*'
 ];
 
 const corsOptions = {
@@ -32,7 +33,7 @@ const corsOptions = {
         callback(new Error('Not allowed by CORS'));
       }
     },
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "PATCH"],
     credentials: true 
 };
 
