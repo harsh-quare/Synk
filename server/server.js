@@ -12,11 +12,33 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 
+const corsOptions = {
+  origin: 'https://synk-xi.vercel.app', // Allow only your frontend URL
+  methods: ["GET", "POST", "PUT", "PATCH"],
+  credentials: true,  // Allow cookies to be sent with requests
+};
+
+// const corsOptions = {
+//     // The origin function now has added logging for easier debugging.
+//     origin: function (origin, callback) {
+//       // --- NEW: Debugging Log ---
+//       // This will print the incoming request's origin to your Render logs.
+//       console.log('CORS Check: Request from origin:', origin);
+//       console.log('CORS Check: Allowed origins:', allowedOrigins);
+
+//       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error('Not allowed by CORS'));
+//       }
+//     },
+//     methods: ["GET", "POST", "PUT", "PATCH"],
+//     credentials: true 
+// };
+
+
 const io = new Server(server, {
-    cors: {
-        origin: "*", // Allow all origins for development
-        methods: ["GET", "POST"],
-    },
+    cors: corsOptions, // Use the same options for Socket.IO
     pingInterval: 25000,
     pingTimeout: 20000,
 });
@@ -31,7 +53,7 @@ process.on('uncaughtException', (err) => {
 
 // Connect to database and start server
 dbConnect().then(() => {
-    app.use(cors());
+    app.use(cors(corsOptions));
     app.use(express.json());
     app.use(cookieParser());
 
