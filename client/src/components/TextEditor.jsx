@@ -91,7 +91,7 @@ export function TextEditor() {
   // Initialize socket connection
   useEffect(() => {
     // We now use an environment variable for the server URL.
-    const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+    const serverUrl = import.meta.env ? import.meta.env.VITE_SERVER_URL : 'http://localhost:3001';
     const s = io(serverUrl);
     // const s = io("http://localhost:3001");
     setSocket(s);
