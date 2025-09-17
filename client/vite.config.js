@@ -13,7 +13,7 @@ export default defineConfig({
     proxy: {
       // Any request starting with '/api' will be forwarded to the backend.
       '/api': {
-        target: 'http://localhost:3001', // Your Express server's address
+        target: import.meta.env.VITE_SERVER_URL || "http://localhost:3001", // Your Express server's address
         changeOrigin: true,
       },
     },

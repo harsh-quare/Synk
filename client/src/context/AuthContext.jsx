@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
 
 // Create authentication context
 const AuthContext = createContext();
@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
         const checkUserSession = async () => {
             try{
                 // Call protected endpoint to verify session
-                const response = await axios.get('/api/auth/profile');
+                const response = await axios.get('/auth/profile');
                 if(response.status === 200){
                     setUser(response.data);
                     setIsAuthenticated(true);
