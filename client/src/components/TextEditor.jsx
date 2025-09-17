@@ -204,7 +204,7 @@ export function TextEditor() {
               onChange={(e) => setTitle(e.target.value)}
               className="text-base font-normal focus:outline-none bg-transparent 
                 text-gray-200 border-b-2 border-transparent focus:border-indigo-500 
-                transition-colors w-30 max-w-sm"
+                transition-colors w-35 max-w-sm"
               placeholder="Untitled"
             />
             <SaveStatusIcon status={saveStatus} />

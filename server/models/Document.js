@@ -13,7 +13,7 @@ const documentSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        default: 'Untitled Document'
+        default: 'Untitled'
     },
     data: {
         type: Object,
