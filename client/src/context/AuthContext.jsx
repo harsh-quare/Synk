@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
     // Logout: clear cookies and state
     const logout = async () => {
         try{
-            await axios.post('/api/auth/logout');
+            await axios.post('/auth/logout');
         } 
         catch(err){
             console.error("Error logging out", err);

@@ -18,25 +18,6 @@ const corsOptions = {
   credentials: true,  // Allow cookies to be sent with requests
 };
 
-// const corsOptions = {
-//     // The origin function now has added logging for easier debugging.
-//     origin: function (origin, callback) {
-//       // --- NEW: Debugging Log ---
-//       // This will print the incoming request's origin to your Render logs.
-//       console.log('CORS Check: Request from origin:', origin);
-//       console.log('CORS Check: Allowed origins:', allowedOrigins);
-
-//       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error('Not allowed by CORS'));
-//       }
-//     },
-//     methods: ["GET", "POST", "PUT", "PATCH"],
-//     credentials: true 
-// };
-
-
 const io = new Server(server, {
     cors: corsOptions, // Use the same options for Socket.IO
     pingInterval: 25000,
