@@ -133,7 +133,15 @@ exports.getUserProfile = (req, res) => {
 
 // Logout user and clear cookies
 exports.logoutUser = (req, res) => {
-    res.clearCookie('accessToken');
-    res.clearCookie('refreshToken');
+    res.clearCookie('accessToken', {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+    });
+    res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+    });
     res.status(200).json({ message: "Logged out successfully" });
 };
