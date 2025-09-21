@@ -8,8 +8,14 @@ function ProfileDropdown() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
-    navigate("/login");
+    try {
+      await logout();
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed", err);
+      // still navigate so user doesn't remain on protected view if cookies failed to clear
+      navigate("/login");
+    }
   };
 
   const userInitial = user?.email ? user.email.charAt(0).toUpperCase() : "?";

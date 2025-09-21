@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
             catch(err){
                 setUser(null);
                 setIsAuthenticated(false);
-                console.log("No active session or session expired.", err.data);
+                console.log("No active session or session expired.", err?.response?.data || err.message);
             } 
             finally{
                 setLoading(false);
@@ -39,15 +39,17 @@ export function AuthProvider({ children }) {
         setIsAuthenticated(true);
     };
 
-    // Logout: clear cookies and state
+    // Logout: clear cookies(server) and state(client)
     const logout = async () => {
         try{
             await axios.post('/auth/logout');
         } 
         catch(err){
-            console.error("Error logging out", err);
+            console.error("Error logging out", err?.response?.data || err.message);
         } 
         finally{
+            // Clear local client state; caller handles redirect
+            localStorage.removeItem("user");
             setUser(null);
             setIsAuthenticated(false);
         }
