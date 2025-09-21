@@ -92,16 +92,12 @@ exports.loginUser = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "none",
-            domain: ".onrender.com", //so cookies are scoped correctly
-            path: "/",  // default
             maxAge: 30 * 60 * 1000 // 30 minutes
         });
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
             sameSite: "none",
-            domain: ".onrender.com",
-            path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         });
 
