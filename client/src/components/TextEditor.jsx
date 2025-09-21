@@ -8,7 +8,7 @@ import { useParams, Link } from "react-router-dom";
 import { TOOLBAR_OPTIONS } from "../constants";
 import ProfileDropdown from "./ProfileDropdown";
 
-const SAVE_INTERVAL_MS = 3000;
+const SAVE_INTERVAL_MS = 2000;
 
 // Configure allowed fonts for Quill editor
 const Font = Quill.import("formats/font");
