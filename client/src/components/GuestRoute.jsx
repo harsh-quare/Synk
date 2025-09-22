@@ -6,7 +6,7 @@ function GuestRoute() {
 
   // Show a loader while authentication state is being checked
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   // Redirect authenticated users away from guest-only pages
