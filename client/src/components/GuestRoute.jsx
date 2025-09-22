@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Spinner from './Spinner';
 
 function GuestRoute() {
   const { isAuthenticated, loading } = useAuth();
