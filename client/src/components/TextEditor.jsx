@@ -87,6 +87,7 @@ export function TextEditor() {
   const [content, setContent] = useState(""); // Tracks current document content
   const [saveStatus, setSaveStatus] = useState("Connecting...");
   const quillRef = useRef(null);
+  const [isCopied, setIsCopied] = useState(false);
 
   // Initialize socket connection
   useEffect(() => {
@@ -156,6 +157,17 @@ export function TextEditor() {
     socket.emit("send-changes", delta);
   };
 
+  // Function to handle copying the document ID 
+    const handleCopyId = () => {
+        // window.location.href gives us the full, current URL of the page.
+        navigator.clipboard.writeText(window.location.href);
+        setIsCopied(true);
+        // Reset the button text after 2 seconds
+        setTimeout(() => {
+            setIsCopied(false);
+        }, 2000);
+    };
+
   return (
     <div className="h-screen flex flex-col bg-slate-900">
       {/* Header */}
@@ -169,27 +181,19 @@ export function TextEditor() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
-                <linearGradient
-                  id="logoGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style={{ stopColor: "#4f46e5" }} />
                   <stop offset="100%" style={{ stopColor: "#7c3aed" }} />
                 </linearGradient>
               </defs>
               <path
-                d="M8 8C10.2091 8 12 9.79086 12 
-                12C12 14.2091 10.2091 16 8 16"
+                d="M8 8C10.2091 8 12 9.79086 12 12C12 14.2091 10.2091 16 8 16"
                 stroke="url(#logoGradient)"
                 strokeWidth="2"
                 strokeLinecap="round"
               />
               <path
-                d="M16 16C13.7909 16 12 14.2091 12 
-                12C12 9.79086 13.7909 8 16 8"
+                d="M16 16C13.7909 16 12 14.2091 12 12C12 9.79086 13.7909 8 16 8"
                 stroke="url(#logoGradient)"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -204,15 +208,28 @@ export function TextEditor() {
               onChange={(e) => setTitle(e.target.value)}
               className="text-base font-normal focus:outline-none bg-transparent 
                 text-gray-200 border-b-2 border-transparent focus:border-indigo-500 
-                transition-colors w-35 max-w-sm"
+                transition-colors w-25 max-w-sm"
               placeholder="Untitled"
             />
             <SaveStatusIcon status={saveStatus} />
           </div>
         </div>
 
-        <ProfileDropdown />
+        {/* Right section: Copy ID button and ProfileDropdown */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleCopyId}
+            className={`px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
+              isCopied ? 'bg-green-600 text-white' : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+            }`}
+          >
+            {isCopied ? 'Copied!' : 'Share'}
+          </button>
+
+          <ProfileDropdown />
+        </div>
       </header>
+
 
       {/* Main editor area */}
       <main className="flex-grow overflow-y-auto">
@@ -224,6 +241,7 @@ export function TextEditor() {
           modules={{ toolbar: TOOLBAR_OPTIONS }}
         />
       </main>
+
     </div>
   );
 }

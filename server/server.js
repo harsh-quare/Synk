@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-  origin: 'https://synk-xi.vercel.app', // Allow only your frontend URL
+  origin: ['https://synk-xi.vercel.app', 'http://localhost:5173'], // Allow only your frontend URL
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,  // Allow cookies to be sent with requests
 };
